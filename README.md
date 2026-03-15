@@ -123,43 +123,23 @@ Claude, GPT veya Gemini ile karmaşık teknik projeler geliştirirken aynı soru
 kurgu/
 │
 ├── Frontend  ─────────────────────────────────────────────────────
-│   ├── index.html              HTML kabuk
-│   ├── vite.config.js          Vite 5 yapılandırması
-│   ├── package.json            JS bağımlılıkları
-│   └── src/
-│       ├── main.jsx            React 18 giriş noktası
-│       ├── index.css           Global dark theme stilleri
-│       ├── App.jsx             Tüm uygulama
-│       │   ├── DOMAINS         Alan bazlı öneri konfigürasyonu
-│       │   ├── SCORE_CFG       Kalite skoru kriterleri
-│       │   ├── buildPrompt()   Çok dilli, çok modelli prompt üretici
-│       │   ├── Btn/Chip/Field  Yeniden kullanılabilir bileşenler
-│       │   ├── ScoreCard       Canlı kalite göstergesi
-│       │   ├── Modal           Overlay bileşeni
-│       │   ├── useToast        Bildirim hook'u
-│       │   └── StatsBar        Frekans grafiği
-│       └── tauriApi.js         Tauri IPC köprüsü (invoke çağrıları)
-│
-├── Backend  ──────────────────────────────────────────────────────
-│   └── src-tauri/
-│       ├── Cargo.toml          Rust bağımlılıkları
-│       ├── build.rs            Tauri build betiği
-│       ├── tauri.conf.json     Uygulama & bundle yapılandırması
-│       ├── capabilities/
-│       │   └── default.json    İzin tanımları (core:default)
-│       └── src/
-│           ├── main.rs         Tauri komut tanımları + uygulama başlatma
-│           ├── lib.rs          Mobil entry point
-│           └── db.rs           SQLite CRUD katmanı (rusqlite)
-│
-└── Veri  ──────────────────────────────────────────────────────────
-    └── %APPDATA%\kurgu\kurgu.db
-        └── requests tablosu
-            ├── id          INTEGER PRIMARY KEY AUTOINCREMENT
-            ├── title       TEXT NOT NULL
-            ├── body        TEXT  (prompt içeriği)
-            ├── tags        TEXT  (alan etiketi)
-            └── created_at  TEXT  (ISO 8601 tarih)
+   ├── index.html              HTML kabuk
+   ├── vite.config.js          Vite 5 yapılandırması
+   ├── package.json            JS bağımlılıkları
+   └── src/
+       ├── main.jsx            React 18 giriş noktası
+       ├── index.css           Global dark theme stilleri
+       ├── App.jsx             Tüm uygulama
+          ├── DOMAINS         Alan bazlı öneri konfigürasyonu
+          ├── SCORE_CFG       Kalite skoru kriterleri
+          ├── buildPrompt()   Çok dilli, çok modelli prompt üretici
+          ├── Btn/Chip/Field  Yeniden kullanılabilir bileşenler
+          ├── ScoreCard       Canlı kalite göstergesi
+          ├── Modal           Overlay bileşeni
+          ├── useToast        Bildirim hook'u
+          └── StatsBar        Frekans grafiği
+       
+
 ```
 
 ### Veri Akışı
