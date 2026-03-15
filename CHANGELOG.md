@@ -1,7 +1,7 @@
 # Kurgu — v0.2.0 Sürüm Notları
 
 **Yayın tarihi:** Mart 2026
-**Önceki sürüm:** v0.1.1
+**Önceki sürüm:** v0.1.0
 
 ---
 
