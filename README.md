@@ -260,7 +260,7 @@ Talep kalitesi 8 kriter üzerinden 0–100 arasında anlık olarak hesaplanır:
 🔸 Parametreler ████████████ 10 puan 
 🔸 Grafikler    ████████████ 10 puan 
 🔸 Etkileşim    ████████████ 10 puan 
-🔸 Ek Notlar    ████████████ 10 puan 
+🔸 Ek Notlar    ████████████ 10 puan
 
 ```
 
