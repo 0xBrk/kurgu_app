@@ -20,7 +20,6 @@
 [![License: MIT](https://img.shields.io/badge/Lisans-MIT-yellow?style=flat-square)](LICENSE)
 [![Platform: Windows](https://img.shields.io/badge/Windows-x64-0078D4?style=flat-square&logo=windows&logoColor=white)](https://github.com/releases)
 [![Sürüm](https://img.shields.io/badge/Sürüm-0.1.0-e2c97e?style=flat-square)]()
-[![Boyut](https://img.shields.io/badge/Installer-1.6_MB-34d399?style=flat-square)]()
 
 <br/>
 
