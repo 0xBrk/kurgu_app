@@ -7,7 +7,7 @@
 
 # Changelog - kurgu_app
 
-## [0.3.0] - 2026-03-15
+## [0.2.0] - 2026-03-15
 
 ### 🚀 Mimari Değişiklikler (Refactoring)
 * **Dosya Ağacı Yenilendi:** Uygulamanın devasa `App.jsx` dosyası "Feature-Based" (Özellik Odaklı) mimariye göre parçalandı.
