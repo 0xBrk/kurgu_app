@@ -253,14 +253,14 @@ Kurgu aşağıdaki alanları otomatik tanır. **Alan** veya **Amaç** alanına i
 Talep kalitesi 8 kriter üzerinden 0–100 arasında anlık olarak hesaplanır:
 
 ```
-🔸 Proje Adı    ████████████████ 15 puan 
-🔸 Amaç         ████████████████████████ 20 puan  ← En kritik  
-🔸 Formüller    ████████████████ 15 puan 
-🔸 Alan         ████████████ 10 puan 
-🔸 Parametreler ████████████ 10 puan 
-🔸 Grafikler    ████████████ 10 puan 
-🔸 Etkileşim    ████████████ 10 puan 
-🔸 Ek Notlar    ████████████ 10 puan
+| 🔸 Proje Adı    ████████████████ 15 puan |
+| 🔸 Amaç         ████████████████████████ 20 puan  ← En kritik |
+| 🔸 Formüller    ████████████████ 15 puan | 
+| 🔸 Alan         ████████████ 10 puan | 
+| 🔸 Parametreler ████████████ 10 puan | 
+| 🔸 Grafikler    ████████████ 10 puan | 
+| 🔸 Etkileşim    ████████████ 10 puan | 
+| 🔸 Ek Notlar    ████████████ 10 puan |
 
 ```
 
