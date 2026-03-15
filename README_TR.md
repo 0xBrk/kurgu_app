@@ -105,7 +105,6 @@ Claude, GPT veya Gemini ile karmaşık teknik projeler geliştirirken aynı soru
 
 ### Bellek & Kalıcılık
 
-- **SQLite Geçmişi** — Her talep `%APPDATA%\kurgu\kurgu.db` dosyasına kaydedilir; uygulama yeniden başlatılınca veriler kaybolmaz
 - **Versiyonlu Kütüphane** — Şablonları `v1`, `final`, `revize` gibi etiketlerle çoklu versiyonda sakla
 - **Geri Bildirim** — 👍 / 👎 ile talepleri değerlendir; istatistiklerde başarı oranını takip et
 
@@ -176,17 +175,6 @@ Kullanıcı Form Girer
         │
         │  [Kurgula & Kaydet butonuna tıklar]
         ▼
- tauriApi.js → invoke('add_request_cmd', { title, body, tags })
-        │
-        │  [Tauri IPC köprüsü]
-        ▼
- main.rs → #[tauri::command] fn add_request_cmd(...)
-        │
-        ▼
- db.rs → rusqlite::Connection::open(db_path())
-        │  INSERT INTO requests ...
-        ▼
- kurgu.db  (%APPDATA%\kurgu\kurgu.db)
 ```
 
 ---
@@ -197,33 +185,9 @@ Kullanıcı Form Girer
 |--------|-----------|----------|--------|
 | **UI Framework** | React | 18.2 | Bileşen tabanlı yapı, reaktif state |
 | **Build Tool** | Vite | 5.0 | Hızlı HMR, ESM-native |
-| **Desktop Wrapper** | Tauri | 2.10 | Electron'a kıyasla 50x daha küçük binary |
-| **Backend** | Rust | 1.77+ | Bellek güvenliği, native performans |
-| **Database** | SQLite (rusqlite) | 0.29 | Sıfır harici bağımlılık, `bundled` feature |
 | **Tarih** | chrono | 0.4 | ISO 8601 tarih üretimi |
 | **Dizin** | dirs | 4.0 | `%APPDATA%` platform-bağımsız tespiti |
 | **Stil** | Inline CSS (S objesi) | — | Sıfır CSS framework bağımlılığı |
-
-### Neden Tauri, Electron Değil?
-
-| Kriter | Kurgu (Tauri) | Electron |
-|--------|--------------|----------|
-| Installer boyutu | **1.6 MB** | ~100+ MB |
-| RAM kullanımı | ~30–60 MB | ~200+ MB |
-| Başlangıç süresi | Hızlı | Yavaş |
-| Backend dili | Rust | Node.js |
-| SQLite entegrasyonu | Native (rusqlite) | Ek paket gerekir |
-
----
-
-## Kurulum
-
-### Hazır Installer (Önerilen)
-
-1. [Releases](https://github.com/KULLANICI/kurgu/releases) sayfasından `kurgu_0.1.0_x64-setup.exe` dosyasını indir
-2. Çift tıkla, kur, çalıştır
-
-Başka hiçbir şeye gerek yok.
 
 ---
 
@@ -234,28 +198,25 @@ Başka hiçbir şeye gerek yok.
 | Araç | Sürüm | İndirme |
 |------|-------|---------|
 | Node.js | 18+ | [nodejs.org](https://nodejs.org/) |
-| Rust | 1.77+ | [rustup.rs](https://rustup.rs/) |
 | WebView2 | Herhangi | Windows 11'de önceden yüklü |
 
 #### Adımlar
 
 ```bash
 # 1. Repoyu klonla
-git clone https://github.com/KULLANICI/kurgu.git
+git clone https://github.com/KULLANICI/kurgu_app.git
 cd kurgu
 
-# 2. JavaScript bağımlılıklarını yükle
-npm install
+# 2. CMD ile dosya yolunu düzenle
+örn: C:\Users\admin\Kurgu_App veya C:\Users\admin\Downloads\Kurgu_App 
 
-# 3. Geliştirme modunda başlat (hot-reload)
-npx tauri dev
+# 3. CMD istemcisine aşağıdaki girdileri yaz
+npm install && npm run dev
 
-# 4. Production installer üret
-npx tauri build
-# Çıktı: src-tauri/target/release/bundle/nsis/kurgu_0.1.0_x64-setup.exe
-```
+# 4. CMD istemcisinde gördüğün localhost adresini kopyalayıp tarayıcında çalıştır.
 
-> **Not:** İlk `npx tauri build` komutu Rust bağımlılıklarını derlediği için 5–10 dakika sürebilir. Sonraki derlemeler çok daha hızlıdır.
+
+> **Not:** İlk `npm install` komutu Javascript araçlarını derlediği için biraz sürebilir. Sonraki derlemeler çok daha hızlıdır.
 
 ---
 
@@ -288,17 +249,11 @@ Form doluyken **🔗 Paylaş** butonuna tıkla. Üretilen URL'yi bir meslektaş�
 
 | Veri | Nerede | Ne Zaman Silinir |
 |------|--------|-----------------|
-| Talep geçmişi | SQLite (`kurgu.db`) | Manuel silme ile |
 | Şablon kütüphanesi | `localStorage` | Tarayıcı cache temizlenirse |
 | İstatistikler | `localStorage` | Tarayıcı cache temizlenirse |
 | Paylaşım linki | URL parametresi | Kayıt tutulmaz |
 
 **Gizlilik:** Hiçbir veri dışarı gönderilmez. Kurgu tamamen çevrimdışı çalışır. İnternet bağlantısı yalnızca "Claude.ai'ya Gönder" butonunda (tarayıcı açmak için) kullanılır.
-
-**Veritabanı konumu:**
-```
-Windows:  C:\Users\{KullanıcıAdı}\AppData\Roaming\kurgu\kurgu.db
-```
 
 ---
 
@@ -347,20 +302,17 @@ Ek Notlar    ████████████ 10 puan
 - 5 adımlı form sihirbazı
 - 6 alan için akıllı öneri sistemi
 - Canlı önizleme + kalite skoru
-- SQLite kalıcı geçmiş
 - Versiyonlu şablon kütüphanesi
 - Paylaşım linki (Base64 URL encoding)
 - A/B test modu
 - TR / EN dil desteği
 - Claude / GPT / Gemini format desteği
 - İstatistik paneli
-- NSIS installer — 1.6 MB
 
 ---
 
 ## Bilinen Sınırlar
 
-- **Windows only:** Mevcut build yalnızca Windows x64 için yapılandırılmış. macOS ve Linux desteği ilerleyen sürümlerde planlanmaktadır.
 - **Şablon kütüphanesi localStorage'da:** Tarayıcı cache'i temizlenirse kütüphane silinir. SQLite'a taşınması v0.2.0 hedefleri arasında.
 - **Çevrimdışı AI köprüsü:** Kurgu talebi oluşturur ama AI'a doğrudan bağlanmaz; clipboard üzerinden kopyala-yapıştır iş akışı kullanılır.
 
@@ -377,10 +329,8 @@ v0.2.0 Hedefleri:
   ☐ Talep düzenleme (güncelleme) özelliği
   ☐ Gelişmiş geçmiş filtreleme
   ☐ PDF / Markdown dışa aktarma
-  ☐ Otomatik güncelleme (tauri-plugin-updater)
 
 v0.3.0 Hedefleri:
-  ☐ macOS / Linux desteği
   ☐ GitHub OAuth ile bulut yedekleme
   ☐ Topluluk şablon paylaşımı
   ☐ VS Code eklentisi
@@ -396,13 +346,10 @@ Katkılar memnuniyetle karşılanır. Büyük değişiklikler için önce bir `i
 
 ```bash
 # Fork'la ve klonla
-git clone https://github.com/SENIN_KULLANICI_ADIN/kurgu.git
+git clone https://github.com/SENIN_KULLANICI_ADIN/kurgu_app.git
 
 # Branch oluştur
 git checkout -b ozellik/yeni-alan-destegi
-
-# Değişikliklerini yap, test et
-npx tauri dev
 
 # Commit et
 git commit -m "feat: kimya alanı için öneri sistemi eklendi"
@@ -459,9 +406,13 @@ React + Vite Web Uygulaması
         │
         │  "Tarayıcıdan çıkmadan çalışan native uygulama olsun"
         ▼
-Tauri Masaüstü Uygulaması  ◄── Şu an buradasınız
+Sonraki adımlar...
         │
-        │  Sonraki adımlar...
+        │  
+        ▼
+Tauri Masaüstü Uygulaması  
+        │
+        │  
         ▼
 Otomatik güncelleme · Bulut yedekleme · Topluluk şablonları
 ```
